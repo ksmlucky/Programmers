@@ -1,35 +1,31 @@
-import java.util.ArrayList;
+public class NumberStringAndEnglishWord {
 
-public class NumberStringAndEnglishWord<T> {
+    public static class Solution {
+        public int solution(String s) {
+            int answer = 0;
+            s = s.replace("one", "1");
+            s = s.replace("two", "2");
+            s = s.replace("three", "3");
+            s = s.replace("four", "4");
+            s = s.replace("five", "5");
+            s = s.replace("six", "6");
+            s = s.replace("seven", "7");
+            s = s.replace("eight", "8");
+            s = s.replace("nine", "9");
+            s = s.replace("zero", "0");
 
-    private ArrayList<T> queue = new ArrayList<T>();
-
-    public void enqueue(T item) {
-        queue.add(item);
-    }
-
-    public T dequeue() {
-        if (queue.isEmpty()) {
-            return null;
+            int i = Integer.parseInt(s);    //문자열을 정수형으로 변환
+            return i;
         }
 
-        return queue.remove(0);
     }
 
-    public boolean isEmpty() {
-        return queue.isEmpty();
-    }
 
     public static void main(String[] args) {
-        NumberStringAndEnglishWord<Integer> mq = new NumberStringAndEnglishWord<Integer>();
-        mq.enqueue(1);
-        mq.enqueue(2);
-        mq.enqueue(3);
+        Solution sol = new Solution();
 
-        System.out.println(mq.dequeue());
-        System.out.println(mq.dequeue());
-        System.out.println(mq.dequeue());
-        System.out.println(mq.dequeue());
+        String s = "one4seveneight";
 
+        System.out.println(sol.solution(s));
     }
 }
