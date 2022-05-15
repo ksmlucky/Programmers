@@ -1,6 +1,8 @@
+// 코딩테스트 연습 - 2019 카카오 개발자 겨울 인턴십 - 크레인 인형뽑기 게임
+// https://programmers.co.kr/learn/courses/30/lessons/64061?language=java
+
 package PROGRAMMERS.level1;
 
-import java.util.Arrays;
 import java.util.Stack;
 
 public class Num64061_크레인인형뽑기게임 {
