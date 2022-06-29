@@ -1,65 +1,65 @@
-package PROGRAMMERS;
+// 코딩테스트 연습 - 2018 KAKAO BLIND RECRUITMENT - [1차] 뉴스 클러스터링
+// https://programmers.co.kr/learn/courses/30/lessons/17677
+
+package PROGRAMMERS.level2;
 
 import java.util.ArrayList;
 
-public class Num17677_뉴스클러스터링 {
+public class Num17677_뉴스클러스터링2 {
     private static class Solution {
         private int solution(String str1, String str2) {
-            double answer = 0;
-
-            ArrayList<String> STR1 = new ArrayList<>();
-            ArrayList<String> STR2 = new ArrayList<>();
-
-            str1 = str1.toLowerCase();
-            str2 = str2.toLowerCase();
+            ArrayList<String> strArr1 = new ArrayList<>();
+            ArrayList<String> strArr2 = new ArrayList<>();
 
             for (int i = 0; i < str1.length() - 1; i++) {
-                char char1 = str1.charAt(i);
-                char char2 = str1.charAt(i + 1);
+                String temp = str1.substring(i, i + 2).toLowerCase();
 
-                if (char1 >= 'a' && char1 <= 'z' && char2 >= 'a' && char2 <= 'z') {
-                    STR1.add(char1 + "" + char2);
+                if (temp.charAt(0) >= 'a' && temp.charAt(0) <= 'z' && temp.charAt(1) >= 'a' && temp.charAt(1) <= 'z') {
+                    strArr1.add(temp);
                 }
             }
             for (int i = 0; i < str2.length() - 1; i++) {
-                char char1 = str2.charAt(i);
-                char char2 = str2.charAt(i + 1);
+                String temp = str2.substring(i, i + 2).toLowerCase();
 
-                if (char1 >= 'a' && char1 <= 'z' && char2 >= 'a' && char2 <= 'z') {
-                    STR2.add(char1 + "" + char2);
+                if (temp.charAt(0) >= 'a' && temp.charAt(0) <= 'z' && temp.charAt(1) >= 'a' && temp.charAt(1) <= 'z') {
+                    strArr2.add(temp);
                 }
             }
 
-            ArrayList<String> BIG = new ArrayList<>();
-            ArrayList<String> SMALL = new ArrayList<>();
+            ArrayList<String> bigArrayList = new ArrayList<>(); // 합집합
+            ArrayList<String> smallArrayList = new ArrayList<>(); // 교집합
 
-            // 합집합 BIG, 교집합 SMALL 구하기
-            for (int i = 0; i < STR1.size(); i++) {
-                String str = STR1.get(i);
-                if (STR2.remove(str)) {
-                    SMALL.add(str);
+            // 교집합 만들기
+            for (String temp : strArr1) {
+                if (strArr2.remove(temp)) { // temp가 strArr1에 있고 strArr2에도 있으면 strArr2에서 삭제하고
+                    smallArrayList.add(temp); // 교집합에 추가
                 }
-                BIG.add(str);
+                bigArrayList.add(temp); // 합집합에는 일단 strArr1에 있는거 다 추가
             }
 
-            // 교집합에 포함되지 않았던 애들 합집합에 넣어주기
-            for(int i=0; i<STR2.size(); i++) {
-                BIG.add(STR2.get(i));
+            // 합집합에 나머지 추가해주기
+            for (String temp : strArr2) { // 이제 strArr2에는 공통되지 않은 애들만 남았음
+                bigArrayList.add(temp); // 합집합에 추가
             }
 
-            answer = 65536 * ((double) SMALL.size() / (double) BIG.size());
+            int bigSetSize = bigArrayList.size();
+            int smallSetSize = smallArrayList.size();
 
-            if (BIG.size() == 0) {
-                return 65536;
+            double answer = 0;
+
+            if (bigSetSize == 0) {
+                answer = 65536;
             } else {
-                return (int) answer;
+                answer = (double) smallSetSize / bigSetSize * 65536;
             }
-        }
 
+            return (int)answer;
+        }
     }
 
     public static void main(String[] args) {
         Solution sol = new Solution();
+
         System.out.println(sol.solution("FRANCE", "french"));
         System.out.println(sol.solution("handshake", "shake hands"));
         System.out.println(sol.solution("aa1+aa2", "AAAA12"));
