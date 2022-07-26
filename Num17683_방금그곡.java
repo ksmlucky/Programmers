@@ -50,6 +50,11 @@ public class Num17683_방금그곡 {
                 }
             }
 
+            // 멜로디가 재생된 시간이 0이면
+            if (maxTime == 0) {
+                answer = "(None)";
+            }
+
             return answer;
         }
     }
