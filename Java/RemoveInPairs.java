@@ -1,3 +1,5 @@
+// 짝지어 제거하기
+
 import java.util.Stack;
 
 public class RemoveInPairs {
