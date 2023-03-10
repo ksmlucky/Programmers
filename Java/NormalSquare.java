@@ -1,3 +1,5 @@
+// 멀쩡한 사각형
+
 package PROGRAMMERS;
 
 public class NormalSquare {
