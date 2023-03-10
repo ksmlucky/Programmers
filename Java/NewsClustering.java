@@ -1,3 +1,5 @@
+// 뉴스 클러스터링
+
 import java.util.ArrayList;
 import java.util.Collections;
 
